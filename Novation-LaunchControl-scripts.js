@@ -50,10 +50,16 @@ LC.led = { // this is the customizable part
 // LED color settings for the Launch Control - see programmer's guide for full explanation. b is a brightness control
 function getColor(color,b){
 	switch (color) {
-		case 'off': return 0x0c;
-		case 'red': return 0x0D+b;
-		case 'amber': return 0x1D+b+b*16;
-		case 'green': return 0x1C+b*16;
+		case 'off': 
+			return 0x0c;
+		case 'red': 
+			return 0x0D+b;
+		case 'amber': 
+			return 0x1D+b+b*16;
+		case 'green': 
+			return 0x1C+b*16;
+		default: 
+			return 0x0c;
 	}
 }
 
@@ -80,19 +86,14 @@ var arrow3 = engine.makeConnection('[EffectRack1_EffectUnit1]','group_[Channel1]
 var arrow4 = engine.makeConnection('[EffectRack1_EffectUnit2]','group_[Channel2]_enable',function (v){v ? LC.led.on(9,'',1) : LC.led.off(9)});;
 
 
-LC.LEDtoArray = function () { // can't use Object.values in this environment, so this is a kludge
-	var array = [];
-	array.push(LC.led.template);
-	array.push(LC.led.num);
-	array.push(LC.led.color);
-	array.push(LC.led.last);
-	return array;
+LC.LEDtoArray = function () { // assemble array from current variable values
+	return [LC.led.template,LC.led.num,LC.led.color,LC.led.last];
 }
 
 LC.init = function (id, debugging) {
 	// explicitly set device template
-	var setTemplate = [240, 0, 32, 41, 2, 10, 119, LC.t.u, 247];
-	midi.sendSysexMsg(setTemplate, setTemplate.length);
+	const TEMP = [240, 0, 32, 41, 2, 10, 119, LC.t.u, 247];
+	midi.sendSysexMsg(TEMP, TEMP.length);
 }
  
 LC.shutdown = function() {
