@@ -13,8 +13,8 @@ Controlling effects:
 
 - Pads 1-4 turn on/off effects 1-4 on Deck 1, and similarly with pads 5-8 for Deck 2. 
 - The LED in each pad shows if the corresponding audio effect is on or off.
-- Leftmost knob controls the meta knob for that effect, rightmost knob controls one effect paramter. You can change which parameter using the MIDI learning wizard within Mixxx.
-- Super knob: leftmost knob for pad 1 and pad 5 have special poweres - they are super knobs, so they control all the meta knobs for that deck.
+- Leftmost knob controls the meta knob for that effect, rightmost knob controls one effect parameter. You can change which parameter using the MIDI learning wizard within Mixxx.
+- Super knob: leftmost knob for pad 1 and pad 5 have special powers - they are super knobs, so they control all the meta knobs for that deck.
 
 Effects routing:
 
