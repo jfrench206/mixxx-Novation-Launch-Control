@@ -10,11 +10,11 @@ LC.byteArray = [];
 // ---- User Settings: -------------------
 LC.gb = 0; // global brightness - 0 is dim, 1 is medium, 2 is bright - pick the one you want
 LC.myColor = 'amber'; // preferred default color of LED to use - choices are amber, red, green
-LC.t = {u: 0x03, f: 0x09}; // template setting - user and factory
+LC.t = {u: 3, f: 9}; // template setting - user and factory (zero-indexed)
 
 // Note: templates above are set to User Template 4 (index 3) and Factory Template 10 (index 9) because I don't have the 
 // ability to run the device programming app, and that's what my hardware is set to. You can use 'mixxx --mididebug' 
-// from command line to find your template settings - corresponds to incoming MIDI channel.
+// from command line to find your template settings - corresponds to incoming MIDI channel from the LaunchControl.
 //
 // ---- End User Settings ----------------
 
