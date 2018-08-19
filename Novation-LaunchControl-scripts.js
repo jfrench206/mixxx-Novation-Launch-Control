@@ -8,12 +8,13 @@ var LC = new Controller();
 LC.byteArray = [];
 
 // ---- User Settings: -------------------
-LC.gb = 0; // global brightness - 0 is dim, 1 is medium, 2 is bright - pick the one you want
-LC.myColor = 'amber'; // preferred default color of LED to use - choices are amber, red, green
-LC.t = {u: 3, f: 9}; // template setting - user and factory (zero-indexed)
+LC.globalBrightness = 0; // global brightness - 0 is dim, 1 is medium, 2 is bright - pick the one you want
+LC.myColorPref = 'amber'; // preferred default color of LED to use - choices are amber, red, green
+LC.template = {user: 4, factory: 10}; // template setting - user and factory
 
-// Note: templates above are set to User Template 4 (index 3) and Factory Template 10 (index 9) because I don't have the 
-// ability to run the device programming app, and that's what my hardware is set to. You can use 'mixxx --mididebug' 
+// Note: templates above are set to User Template 4 and Factory Template 10 because I don't have the 
+// ability to run the Launch Control programming app, and that's what my hardware is set to. If you
+// can run the app, check it to see what channel your LC is transmitting on. Or, use 'mixxx --mididebug' 
 // from command line to find your template settings - corresponds to incoming MIDI channel from the LaunchControl.
 //
 // ---- End User Settings ----------------
@@ -29,9 +30,9 @@ LC.led = { // this is the customizable part
 	on: function (n, color, brightness, temp){
 		// set some defaults if no arguments are provided - incorporates user settings
 		n = n || 0;
-		color = color || LC.myColor;
-		brightness = brightness || LC.gb;
-		temp = temp || LC.t.u;
+		color = color || LC.myColorPref;
+		brightness = brightness || LC.globalBrightness;
+		temp = temp-1 || LC.template.user-1;
 
 		// set up the data
 		this.num = n;
@@ -92,7 +93,7 @@ LC.LEDtoArray = function () { // assemble array from current variable values
 
 LC.init = function (id, debugging) {
 	// explicitly set device template
-	const TEMP = [240, 0, 32, 41, 2, 10, 119, LC.t.u, 247];
+	const TEMP = [240, 0, 32, 41, 2, 10, 119, LC.template.user-1, 247];
 	midi.sendSysexMsg(TEMP, TEMP.length);
 }
  

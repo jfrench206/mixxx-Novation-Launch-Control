@@ -36,7 +36,7 @@ Note: in order to get the LED functionality working, you might need to set your 
 
 press some buttons on your Launch Control, and look to see what channel it is transmitting on. For instance, when I press pad 1, the console reads "Launch Control MIDI 1: t:2512 ms status 0x93 (ch 4, opcode 0x9), ctrl 0x09, val 0x7F" 
 
-Find the "ch X" part in parentheses, subtract 1 from that number (important to subtract 1! the setting is zero-indexed in the JS file), and edit the JS file - you want the line that says "LC.t = {u: 3, f: 9};" These numbers correspond to the MIDI channels that the device transmits on in User and Factory templates, so edit to match what your hardware is outputting.
+Find the "ch X" part in parentheses and edit the JS file - you want the line that says "LC.template = {user: 4, factory: 10};" These numbers correspond to the MIDI channels that the device transmits on in User and Factory templates, so edit to match what your hardware is outputting.
 
 If you have trouble, please create a new issue!
 
